@@ -175,6 +175,21 @@
   #s4 .btn { color: var(--wine-ink); }
   #s4 footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; text-align: center; }
 
+  #s4 details { margin-top: 16px; border-top: 1px solid var(--rule); }
+  #s4 summary { cursor: pointer; font-weight: 600; padding: 14px 0 10px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--ink); }
+  #s4 summary::-webkit-details-marker { display: none; }
+  #s4 summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--glow); color: var(--wine); display: grid; place-items: center; font-size: 1.3rem; line-height: 1; }
+  #s4 details[open] summary::after { content: "\2013"; }
+  #s4 summary:focus-visible { outline: 2px solid var(--wine); outline-offset: 2px; border-radius: 6px; }
+  #s4 details > :last-child { margin-bottom: 0; }
+  .shots { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 22px 12px; margin: 0 -22px; scroll-padding: 0 22px; -webkit-overflow-scrolling: touch; }
+  .shots figure { flex: 0 0 min(62%, 240px); margin: 0; scroll-snap-align: start; }
+  .shots img, .desk img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--rule); background: var(--paper); }
+  .shots figcaption, .desk figcaption { font-size: .9rem; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+  .shots figcaption b, .desk figcaption b { color: var(--ink); }
+  .card .hint { font-size: .85rem; margin: 2px 0 0; }
+  .desk { margin: 22px 0 0; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
     .balloon, #confetti { display: none; }
@@ -274,43 +289,64 @@
     <header>
       <img class="mini" src="jett-face.jpg" alt="">
       <h1>Your gift, Jett 🎁</h1>
-      <p class="lede">It's an app called Jett's Archive. Pick your device below to install it.</p>
+      <p class="lede">It's an app called Jett's Archive. Pick your device below to install it. On iPhone? <a href="#preview" id="to-preview">See what the app looks like.</a></p>
     </header>
 
     <section class="card" aria-labelledby="android">
       <h2 id="android">1. Android</h2>
       <p>For your phone or tablet.</p>
-      <ol>
-        <li>Tap the button below to download the APK file.</li>
-        <li>When it finishes, open the downloaded file (from the notification or your <em>Downloads</em> folder).</li>
-        <li>If Android asks, tap <strong>Settings</strong> and switch on <strong>Allow from this source</strong>, then go back.</li>
-        <li>Tap <strong>Install</strong>, then <strong>Open</strong>.</li>
-      </ol>
       <!-- If your APK lives on a GitHub Release, replace this href with the release download URL -->
       <a class="btn" id="apk-link" href="photograph-android.apk" download>Download for Android (APK)</a>
-      <p class="note">If Google Play Protect shows a warning, tap <strong>More details → Install anyway</strong>. The app isn't on the Play Store, so this is normal.</p>
+      <details>
+        <summary>How to install</summary>
+        <ol>
+          <li>Tap the button above to download the APK file.</li>
+          <li>When it finishes, open the downloaded file (from the notification or your <em>Downloads</em> folder).</li>
+          <li>If Android asks, tap <strong>Settings</strong> and switch on <strong>Allow from this source</strong>, then go back.</li>
+          <li>Tap <strong>Install</strong>, then <strong>Open</strong>.</li>
+        </ol>
+        <p class="note">If Google Play Protect shows a warning, tap <strong>More details → Install anyway</strong>. The app isn't on the Play Store, so this is normal.</p>
+      </details>
     </section>
 
     <section class="card" aria-labelledby="windows">
       <h2 id="windows">2. Windows</h2>
       <p>For your Windows PC (64-bit).</p>
       <a class="btn" href="photograph-windows-x64.zip" download>Download for Windows (ZIP)</a>
+      <details>
+        <summary>How to install, plus a Desktop shortcut</summary>
+        <p class="step-label">Unzip it</p>
+        <ol>
+          <li>Open your <em>Downloads</em> folder, right-click <strong>photograph-windows-x64.zip</strong> and choose <strong>Extract All…</strong>, then <strong>Extract</strong>.</li>
+          <li>Open the new <strong>photograph-windows-x64</strong> folder. Keep every file in it together, and don't run the app from inside the zip.</li>
+          <li>Double-click <strong>photograph.exe</strong> to start. If Windows says "Windows protected your PC", click <strong>More info → Run anyway</strong>.</li>
+        </ol>
+        <p class="step-label">Add a shortcut to your Desktop</p>
+        <ol>
+          <li>In the folder, right-click <strong>photograph.exe</strong>.</li>
+          <li>On Windows 11, choose <strong>Show more options</strong> (or press <kbd>Shift</kbd>+<kbd>F10</kbd>).</li>
+          <li>Choose <strong>Send to → Desktop (create shortcut)</strong>.</li>
+          <li>A <strong>photograph.exe - Shortcut</strong> icon now appears on your Desktop. Rename it to <strong>Jett's Archive</strong> if you like, and double-click it any time to open the app.</li>
+        </ol>
+        <p class="note">Don't move or delete the original folder. The shortcut points to it.</p>
+      </details>
+    </section>
 
-      <p class="step-label">Unzip it</p>
-      <ol>
-        <li>Open your <em>Downloads</em> folder, right-click <strong>photograph-windows-x64.zip</strong> and choose <strong>Extract All…</strong>, then <strong>Extract</strong>.</li>
-        <li>Open the new <strong>photograph-windows-x64</strong> folder. Keep every file in it together, and don't run the app from inside the zip.</li>
-        <li>Double-click <strong>photograph.exe</strong> to start. If Windows says "Windows protected your PC", click <strong>More info → Run anyway</strong>.</li>
-      </ol>
-
-      <p class="step-label">Add a shortcut to your Desktop</p>
-      <ol>
-        <li>In the folder, right-click <strong>photograph.exe</strong>.</li>
-        <li>On Windows 11, choose <strong>Show more options</strong> (or press <kbd>Shift</kbd>+<kbd>F10</kbd>).</li>
-        <li>Choose <strong>Send to → Desktop (create shortcut)</strong>.</li>
-        <li>A <strong>photograph.exe - Shortcut</strong> icon now appears on your Desktop. Rename it to <strong>Jett's Archive</strong> if you like, and double-click it any time to open the app.</li>
-      </ol>
-      <p class="note">Don't move or delete the original folder. The shortcut points to it.</p>
+    <section class="card" id="preview" aria-labelledby="preview-h">
+      <h2 id="preview-h">On iPhone? Here's a peek 👀</h2>
+      <p>The app is only on Android and Windows for now, so here's what it looks like and what it does.</p>
+      <div class="shots" tabindex="0" role="group" aria-label="App screenshots, scroll sideways">
+        <figure><a href="app-02.webp" target="_blank" rel="noopener"><img src="app-02.webp" width="517" height="843" loading="lazy" alt="Home screen of the app"></a><figcaption><b>Home.</b> Your journal. Start a new album or pick up where you left off.</figcaption></figure>
+        <figure><a href="app-03.webp" target="_blank" rel="noopener"><img src="app-03.webp" width="516" height="851" loading="lazy" alt="New album screen choosing an occasion"></a><figcaption><b>New album.</b> Name it and choose an occasion: restaurant, party, travel, outdoors, everyday or celebration.</figcaption></figure>
+        <figure><a href="app-04.webp" target="_blank" rel="noopener"><img src="app-04.webp" width="505" height="848" loading="lazy" alt="Date picker"></a><figcaption><b>Pick a date.</b> Set the day, even a day ahead, so you can plan your shots.</figcaption></figure>
+        <figure><a href="app-05.webp" target="_blank" rel="noopener"><img src="app-05.webp" width="515" height="840" loading="lazy" alt="List of photo ideas"></a><figcaption><b>Photo ideas.</b> A few ideas for the occasion. Shuffle or edit them, then capture or attach a photo.</figcaption></figure>
+        <figure><a href="app-06.webp" target="_blank" rel="noopener"><img src="app-06.webp" width="516" height="842" loading="lazy" alt="Saved memory with a comment"></a><figcaption><b>Memories.</b> Photos and videos you kept, each with its own comment.</figcaption></figure>
+        <figure><a href="app-07.webp" target="_blank" rel="noopener"><img src="app-07.webp" width="512" height="846" loading="lazy" alt="Share album card"></a><figcaption><b>Share a card.</b> Turn an album into a card you can share.</figcaption></figure>
+        <figure><a href="app-09.webp" target="_blank" rel="noopener"><img src="app-09.webp" width="517" height="847" loading="lazy" alt="List of albums"></a><figcaption><b>All albums.</b> Browse your albums and filter by occasion.</figcaption></figure>
+        <figure><a href="app-08.webp" target="_blank" rel="noopener"><img src="app-08.webp" width="517" height="847" loading="lazy" alt="Google Drive backup settings"></a><figcaption><b>Google Drive backup.</b> Optional. Copies your journal to your own Drive when you switch it on.</figcaption></figure>
+      </div>
+      <p class="hint">Swipe sideways for more. Tap a picture to see it bigger.</p>
+      <figure class="desk"><a href="app-01.webp" target="_blank" rel="noopener"><img src="app-01.webp" width="1400" height="721" loading="lazy" alt="The journal on a computer, with a sidebar"></a><figcaption><b>On a computer.</b> The same journal, with a sidebar for My journal, All albums and the Field guide.</figcaption></figure>
     </section>
 
     <footer>Happy birthday, bro. 🎉<br><a href="#" id="replay">Watch the intro again</a> · <a href="index.html">About Jett's Archive</a> · <a href="privacy.html">Privacy Policy</a></footer>
@@ -443,6 +479,8 @@
   $('#gift-link').addEventListener('click', (e) => { e.preventDefault(); go(2); });
   $('#open-gift').addEventListener('click', () => go(3));
   $('#replay').addEventListener('click', (e) => { e.preventDefault(); go(0); });
+
+  $('#to-preview').addEventListener('click', (e) => { e.preventDefault(); $('#preview').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
 
   /* optional deep links: #letter, #birthday, #download */
   const start = { '#letter': 1, '#birthday': 2, '#download': 3 }[location.hash] ?? 0;
